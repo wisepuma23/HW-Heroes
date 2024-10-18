@@ -1,4 +1,4 @@
-package com.example.woof
+package com.example.heroes
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -44,21 +44,22 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.woof.data.DataSource
-import com.example.woof.model.Dog
-import com.example.woof.ui.theme.WoofTheme
+import com.example.heroes.data.DataSource
+import com.example.heroes.model.Hero
+import com.example.heroes.ui.theme.HeroTheme
+import com.example.woof.R
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            WoofTheme {
+            HeroTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    WoofApp()
+                    HeroesApp()
                 }
             }
         }
@@ -67,7 +68,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WoofTopAppBar(modifier: Modifier = Modifier) {
+fun HeroesTopBar(modifier: Modifier = Modifier) {
     CenterAlignedTopAppBar(
         title = {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -75,7 +76,7 @@ fun WoofTopAppBar(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .size(64.dp)
                         .padding(8.dp),
-                    painter = painterResource(R.drawable.ic_woof_logo),
+                    painter = painterResource(R.drawable.andriod_hero_1_),
                     contentDescription = null
                 )
                 Text(
@@ -90,16 +91,16 @@ fun WoofTopAppBar(modifier: Modifier = Modifier) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WoofApp() {
-    Scaffold (
+fun HeroesApp() {
+    Scaffold(
         topBar = {
-            WoofTopAppBar()
+            HeroesTopBar()
         }
-    ) {it ->
+    ) { it ->
         LazyColumn(contentPadding = it) {
-            items(DataSource.dogs) {
-                DogItem(
-                    dog = it,
+            items(DataSource.heroes) {
+                HeroItem(
+                    hero = it,
                     modifier = Modifier.padding(8.dp)
                 )
             }
@@ -109,14 +110,14 @@ fun WoofApp() {
 
 
 @Composable
-fun DogItem(
-    dog: Dog,
+fun HeroItem(
+    hero: Hero,
     modifier: Modifier = Modifier
 ) {
     var expanded by remember { mutableStateOf(false) }
     val color by animateColorAsState(
         targetValue = if (expanded) MaterialTheme.colorScheme.tertiaryContainer
-        else MaterialTheme.colorScheme.primaryContainer
+        else MaterialTheme.colorScheme.primaryContainer, label = "Color Scheme"
     )
 
     Card(modifier = modifier) {
@@ -141,18 +142,18 @@ fun DogItem(
                         .padding(8.dp)
                         .clip(MaterialTheme.shapes.small),
                     contentScale = ContentScale.Crop,
-                    painter = painterResource(dog.imageResourceId),
+                    painter = painterResource(hero.imageResourceId),
                     contentDescription = null
                 )
 
                 Column {
                     Text(
-                        text = stringResource(dog.name),
+                        text = stringResource(hero.name),
                         style = MaterialTheme.typography.displayMedium,
                         modifier = Modifier.padding(top = 8.dp)
                     )
                     Text(
-                        text = stringResource(dog.description, dog.vulnerability),
+                        text = stringResource(hero.description, hero.vulnerability),
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
@@ -164,7 +165,7 @@ fun DogItem(
             }
             if (expanded) {
                 DogHobby(
-                    dog.vulDetail,
+                    hero.vulDetail,
                     modifier = Modifier.padding(
                         start = 16.dp,
                         top = 8.dp,
@@ -217,15 +218,15 @@ fun DogHobby(
 @Preview
 @Composable
 fun WoofPreview() {
-    WoofTheme {
-        WoofApp()
+    HeroTheme {
+        HeroesApp()
     }
 }
 
 @Preview
 @Composable
 fun WoofDarkThemePreview() {
-    WoofTheme(darkTheme = true) {
-        WoofApp()
+    HeroTheme(darkTheme = true) {
+        HeroesApp()
     }
 }

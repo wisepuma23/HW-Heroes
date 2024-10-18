@@ -1,4 +1,4 @@
-package com.example.woof.ui.theme
+package com.example.heroes.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes

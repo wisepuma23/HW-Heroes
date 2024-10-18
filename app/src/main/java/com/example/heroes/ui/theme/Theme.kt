@@ -1,4 +1,4 @@
-package com.example.woof.ui.theme
+package com.example.heroes.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -81,7 +81,7 @@ private val DarkColors = darkColorScheme(
 )
 
 @Composable
-fun WoofTheme(
+fun HeroTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,
@@ -111,4 +111,10 @@ fun WoofTheme(
         shapes = Shapes,
         content = content
     )
+    SideEffect {
+        val window = (view.context as Activity).window
+        window.statusBarColor = colorScheme.background.toArgb()
+        WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars =
+            darkTheme
+    }
 }
