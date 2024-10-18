@@ -152,7 +152,7 @@ fun DogItem(
                         modifier = Modifier.padding(top = 8.dp)
                     )
                     Text(
-                        text = stringResource(R.string.years_old, dog.age),
+                        text = stringResource(dog.description, dog.vulnerability),
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
@@ -164,7 +164,7 @@ fun DogItem(
             }
             if (expanded) {
                 DogHobby(
-                    dog.hobbies,
+                    dog.vulDetail,
                     modifier = Modifier.padding(
                         start = 16.dp,
                         top = 8.dp,
