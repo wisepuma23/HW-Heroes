@@ -164,7 +164,7 @@ fun HeroItem(
                 )
             }
             if (expanded) {
-                DogHobby(
+                VulnerabilityDetail(
                     hero.vulDetail,
                     modifier = Modifier.padding(
                         start = 16.dp,
@@ -177,6 +177,22 @@ fun HeroItem(
         }
     }
 }
+
+@Composable
+fun VulnerabilityDetail(vulDetail: Int, modifier: Modifier) {
+        Column(
+            modifier = modifier
+        ) {
+            Text(
+                text = stringResource(R.string.about),
+                style = MaterialTheme.typography.labelSmall
+            )
+            Text(
+                text = stringResource(vulDetail),
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
+    }
 
 @Composable
 private fun DogItemButton(
@@ -192,25 +208,6 @@ private fun DogItemButton(
             imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
             contentDescription = stringResource(R.string.expand_button_content_description),
             tint = MaterialTheme.colorScheme.secondary
-        )
-    }
-}
-
-@Composable
-fun DogHobby(
-    @StringRes dogHobby: Int,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier
-    ) {
-        Text(
-            text = stringResource(R.string.about),
-            style = MaterialTheme.typography.labelSmall
-        )
-        Text(
-            text = stringResource(dogHobby),
-            style = MaterialTheme.typography.bodyLarge
         )
     }
 }

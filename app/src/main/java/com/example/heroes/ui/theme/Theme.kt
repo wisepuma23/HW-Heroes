@@ -111,10 +111,10 @@ fun HeroTheme(
         shapes = Shapes,
         content = content
     )
-    SideEffect {
-        val window = (view.context as Activity).window
-        window.statusBarColor = colorScheme.background.toArgb()
-        WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars =
-            darkTheme
-    }
+//    SideEffect {
+//        val window = (view.context as Activity).window
+//        window.statusBarColor = colorScheme.background.toArgb()
+//        WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars =
+//            darkTheme
+//    }
 }
